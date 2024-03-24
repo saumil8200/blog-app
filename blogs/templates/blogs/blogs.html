@@ -1,0 +1,34 @@
+{% extends 'main.html' %} 
+
+{% block content %}
+
+<div>
+    <h1>BLOGS</h1>
+    {% for blog in blogs %}
+
+        <div>
+            <img style="max-width: 200px;" src="{{ blog.featured_image.url }}">
+        </div>
+        <h2>{{ blog.title }}</h2>
+        <h5>{{ blog.owner.name }}</h5>
+        <p>{{ blog.category }}</p>
+        <div>
+            {% for tag in blog.tags.all %}
+                <span style="border: 1px solid grey;">
+                    {{ tag }}
+                </span>
+            {% endfor %}
+        </div><br>
+        <div>
+            {{ blog.description|slice:"200"|safe }}
+        </div>
+        <a href="{% url 'blog' blog.id %}">
+            Read More...
+        </a>
+        <hr>
+
+
+    {% endfor %}
+</div>
+
+{% endblock content %}

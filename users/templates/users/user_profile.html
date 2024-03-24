@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div>
+        <div>
+            <div>
+                <img style="width: 50px;" class="avatar avatar--md" src="{{ profile.profile_image.url }}" alt="image" />
+            </div>
+            <div>
+                <h3>{{ profile.name }}</h3>
+                <h5>{{ profile.short_intro }}</h5>
+                <h6>{{ profile.location }}</h6>
+            </div>
+            <p>
+                {{ profile.bio }}
+            </p>
+        </div>
+        <hr>
+        <div>
+            <h1>Blogs</h1>
+            {% for blog in profile.blog_set.all %}
+                <div>
+                    <img style="max-width: 200px;" class="project__thumbnail" src="{{ blog.featured_image.url }}"4/>
+                </div>
+                <h3>{{ blog.title }}</h3>
+                <p>{{ blog.description }}</p>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}

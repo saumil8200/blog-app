@@ -1,0 +1,24 @@
+<ul>
+    <li>
+        <a href="{% url 'blogs' %}">HOME</a>
+    </li>
+    <li>
+        <a href="{% url 'profiles' %}">PROFILES</a>
+    </li>
+    <li>
+        <a href="{% url 'categories' %}">CATEGORIES</a>
+    </li>
+    {% if request.user.is_authenticated %}
+        <li>
+            <a href="{% url 'create-blog' %}">ADD BLOG</a>
+        </li>
+        <li>
+            <a href="{% url 'logout' %}">Logout</a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{% url 'login' %}">Login/Sign Up</a>
+        </li>
+    {% endif %}
+</ul>
+<hr>
