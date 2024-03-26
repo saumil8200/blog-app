@@ -5,17 +5,23 @@
     <div>
         {% for profile in profiles %}
             <a href="{% url 'user-profile' profile.id %}">
-                <div>
-                    <div>
-                        <img style="width: 50px;" class="avatar avatar--md" src="{{ profile.profile_image.url }}" alt="image" />
+                <div class="bg-white mt-3 mb-3 p-5 rounded-2xl">
+                    <div class="flex items-center mb-3">
+                        <div>
+                            <img class="w-20 h-20 rounded-full object-cover" src="{{ profile.profile_image.url }}" alt="image" />
+                        </div>
+                        <div class="ml-3">
+                            <div class="text-xl font-bold">
+                                {{ profile.name }}
+                            </div>
+                            <div class="mb-3 text-sm">{{ profile.short_intro }}</div>
+                        </div>
                     </div>
                     <div>
-                        <h3 class="text-red-600">{{ profile.name }}</h3>
-                        <h5>{{ profile.short_intro }}</h5>
+                        <div class="text-sm font-light">
+                            {{ profile.bio }}
+                        </div>
                     </div>
-                    <p>
-                        {{ profile.bio }}
-                    </p>
                 </div>
             </a>
         {% endfor %}

@@ -2,30 +2,59 @@
 
 {% block content %}
 
-    <div>
-        <div>
+    <div class="mt-5">
+        <div class="flex items-center mb-3">
             <div>
-                <img style="width: 50px;" class="avatar avatar--md" src="{{ profile.profile_image.url }}" alt="image" />
+                <img style="width: 90px; height: 90px;" class="rounded-full object-fill" src="{{ profile.profile_image.url }}" alt="image" />
             </div>
-            <div>
-                <h3>{{ profile.name }}</h3>
-                <h5>{{ profile.short_intro }}</h5>
-                <h6>{{ profile.location }}</h6>
-            </div>
-            <p>
-                {{ profile.bio }}
-            </p>
-        </div>
-        <hr>
-        <div>
-            <h1>Blogs</h1>
-            {% for blog in profile.blog_set.all %}
-                <div>
-                    <img style="max-width: 200px;" class="project__thumbnail" src="{{ blog.featured_image.url }}"4/>
+            <div class="ml-3">
+                <div class="text-xl font-bold">
+                    {{ profile.name }}
                 </div>
-                <h3>{{ blog.title }}</h3>
-                <p>{{ blog.description }}</p>
-                <hr>
+                <div class="mb-3 text-sm">{{ profile.short_intro }}</div>
+            </div>
+        </div>
+        <div class="text-sm mb-5 font-light">
+            {{ profile.bio }}
+        </div>
+        <div>
+            {% for blog in profile.blog_set.all %}
+                <a href="{% url 'blog' blog.id %}">
+                    <div class="bg-white p-8 mb-5 rounded-2xl">
+                        <div class="flex items-center text-sm">
+                            <!-- <div class="pr-2">
+                                <img class="w-8 h-8 rounded-full"src="{{ blog.owner.profile_image.url }}"> 
+                            </div>
+                            <div class="font-medium">
+                                <a href="{% url 'user-profile' blog.owner.id %}">
+                                    {{ blog.owner.name }}
+                                </a>
+                            </div>
+                            <div class="px-2"> - </div> -->
+                            <div class="font-light">
+                                {{ blog.created }}
+                            </div>
+                        </div>
+                        <a href="{% url 'blog' blog.id %}">
+                            <div class="flex items-center mb-3">
+                                <div class="pr-2">
+                                    <div class="font-black text-2xl mb-2">{{ blog.title }}</div>
+                                    <div class="text-sm font-light">
+                                        {{ blog.description|slice:"300"|safe }}...
+                                    </div>
+                                </div>
+                                <div class="pl-2">
+                                    <img class="w-[400px] rounded-2xl" src="{{ blog.featured_image.url }}">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="text-xs font-medium bg-gray-200 p-2 rounded-2xl w-fit">
+                            <a href="{% url 'category' blog.category.id %}">
+                                {{ blog.category }}
+                            </a>
+                        </div>
+                    </div>
+                </a>
             {% endfor %}
         </div>
     </div>

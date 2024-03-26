@@ -28,10 +28,13 @@ def categories(request):
     return render(request, 'blogs/categories.html', context)
 
 def category(request, pk):
+    page = 'category'
     category = Category.objects.get(id=pk)
     blogs = Blog.objects.filter(category=category)
     context = {
-        'blogs': blogs
+        'blogs': blogs,
+        'category': category,
+        'page': page
     }
     return render(request, 'blogs/blogs.html', context)
 

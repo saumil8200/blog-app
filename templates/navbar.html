@@ -1,4 +1,4 @@
-<ul>
+<!-- <ul>
     <li>
         <a href="{% url 'blogs' %}">HOME</a>
     </li>
@@ -21,4 +21,46 @@
         </li>
     {% endif %}
 </ul>
-<hr>
+<hr> -->
+
+<nav class="bg-white text-[#333333]">
+    <div class="py-4 lg:px-8 px-4 max-w-[1280px] h-16 m-auto flex items-center justify-between">
+        <div>
+            <h1 class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-black">
+                <a href="{% url 'blogs' %}">Blog App</a>
+            </h1>
+        </div>
+        <div class="flex lg:gap-8 gap-6 uppercase text-sm tracking-wider cursor-pointer items-center" id="navItems">
+            <span class="group">
+                <a href="{% url 'profiles' %}">Authors</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            <span class="group">
+                <a href="{% url 'categories' %}">Categories</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            {% if request.user.is_authenticated %}
+            <span class="group">
+                <a href="{% url 'create-blog' %}">Write</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            <span class="group">
+                <a href="{% url 'logout' %}">Logout</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            {% else %}
+            <span class="group">
+                <a href="{% url 'login' %}">Login/Sign Up</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            {% endif %}
+        </div>
+        <div id="hamburger" class="fa fa-bars flex items-center text-xl" style="display:none;">-</div>
+        <div id="mobileNav"
+            class="fixed flex flex-col gap-8 pt-16 px-4 text-xl uppercase bg-teal-500 h-full inset-0 top-16 w-[70%] left-[-70%] ease-in-out duration-500 cursor-pointer">
+            <span>Services</span>
+            <span>About</span>
+            <span>Contact</span>
+        </div>
+    </div>
+</nav>

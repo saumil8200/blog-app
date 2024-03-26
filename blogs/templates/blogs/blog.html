@@ -3,29 +3,44 @@
 {% block content %}
 
 <div>
-    <div>
+    <div class="mt-5 flex items-center">
         {% if request.user == blog.owner.user %}
-            <span>
+            <div class="pr-2">
                 <a href="{% url 'update-blog' blog.id %}">EDIT</a>
-            </span>
-            <span>
+            </div>
+            <div>
                 <a href="{% url 'delete-blog' blog.id %}">DELETE</a>
-            </span>
+            </div>
         {% endif %}
     </div>
-    <div>
-        <img src="{{ blog.featured_image.url }}">
-    </div>
-    <h1>{{ blog.title }}</h1>
-    <h5>{{ blog.owner.name }}</h5>
-    <p>{{ blog.category }}</p>
-    {% for tag in blog.tags.all %}
-        <span style="border: 1px solid grey;">
-            {{ tag }}
-        </span>
-    {% endfor %}
-    <div>
-        {{ blog.description }}
+    <!-- <div>
+        <img class="w-full h-auto" src="{{ blog.featured_image.url }}">
+    </div> -->
+    <div class="mt-5">
+        <div class="text-4xl mb-3 font-black">{{ blog.title }}</div>
+        <div class="flex items-center text-sm">
+            <div class="pr-2">
+                <img class="object-cover rounded-full" style="width: 50px; height: 50px;" src="{{ blog.owner.profile_image.url }}"> 
+            </div>
+            <div class="flex flex-col">
+                <div class="font-medium">
+                    <a href="{% url 'user-profile' blog.owner.id %}">
+                        {{ blog.owner.name }}
+                    </a>
+                </div>
+                <div class="font-light">
+                    {{ blog.created }}
+                </div>
+            </div>
+        </div>
+        <div class="mt-5 text-xs font-medium bg-gray-200 p-2 rounded-2xl w-fit">
+            <a href="{% url 'category' blog.category.id %}">
+                {{ blog.category }}
+            </a>
+        </div>
+        <div class="mt-5 font-light">
+            {{ blog.description }}
+        </div>
     </div>
 </div>
 

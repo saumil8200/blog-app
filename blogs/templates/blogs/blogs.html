@@ -2,31 +2,51 @@
 
 {% block content %}
 
-<div>
-    <h1 class="text-red-500">BLOGS</h1>
+<div class="mt-5">
+    <div>
+        {% if page == 'category' %}
+        <h1 class=  "text-3xl mb-3 font-black">{{ category.name }}</h1>
+        {% else %}
+            <!-- <h1 class="text-3xl mb-3 font-black">Blog App</h1> -->
+        {% endif %}
+    </div>
     {% for blog in blogs %}
-
-        <div>
-            <img style="max-width: 200px;" src="{{ blog.featured_image.url }}">
-        </div>
-        <h2>{{ blog.title }}</h2>
-        <h5>{{ blog.owner.name }}</h5>
-        <p>{{ blog.category }}</p>
-        <div>
-            {% for tag in blog.tags.all %}
-                <span style="border: 1px solid grey;">
-                    {{ tag }}
-                </span>
-            {% endfor %}
-        </div><br>
-        <div>
-            {{ blog.description|slice:"200"|safe }}
-        </div>
         <a href="{% url 'blog' blog.id %}">
-            Read More...
+            <div class="bg-white p-8 mb-5 rounded-2xl">
+                <div class="flex items-center text-sm">
+                    <div class="pr-2">
+                        <img class="w-8 h-8 rounded-full"src="{{ blog.owner.profile_image.url }}"> 
+                    </div>
+                    <div class="font-medium">
+                        <a href="{% url 'user-profile' blog.owner.id %}">
+                            {{ blog.owner.name }}
+                        </a>
+                    </div>
+                    <div class="px-2"> - </div>
+                    <div class="font-light">
+                        {{ blog.created }}
+                    </div>
+                </div>
+                <a href="{% url 'blog' blog.id %}">
+                    <div class="flex items-center mb-3">
+                        <div class="pr-2">
+                            <div class="font-black text-2xl mb-2">{{ blog.title }}</div>
+                            <div class="text-sm font-light">
+                                {{ blog.description|slice:"300"|safe }}...
+                            </div>
+                        </div>
+                        <div class="pl-2">
+                            <img class="w-[400px] rounded-2xl" src="{{ blog.featured_image.url }}">
+                        </div>
+                    </div>
+                </a>
+                <div class="text-xs font-medium bg-gray-200 p-2 rounded-2xl w-fit">
+                    <a href="{% url 'category' blog.category.id %}">
+                        {{ blog.category }}
+                    </a>
+                </div>
+            </div>
         </a>
-        <hr>
-
 
     {% endfor %}
 </div>
