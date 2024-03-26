@@ -50,7 +50,7 @@
                         </a>
                         <div class="text-xs font-medium bg-gray-200 p-2 rounded-2xl w-fit">
                             <a href="{% url 'category' blog.category.id %}">
-                                {{ blog.category }}
+                                {{ blog.category|safe }}
                             </a>
                         </div>
                     </div>
