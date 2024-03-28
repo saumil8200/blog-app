@@ -15,7 +15,7 @@
             <div class="bg-white p-8 mb-5 rounded-2xl">
                 <div class="flex items-center text-sm">
                     <div class="pr-2">
-                        <img class="w-8 h-8 rounded-full"src="{{ blog.owner.profile_image.url }}"> 
+                        <img class="w-8 h-8 rounded-full object-cover"src="{{ blog.owner.profile_image.url }}"> 
                     </div>
                     <div class="font-medium">
                         <a href="{% url 'user-profile' blog.owner.id %}">

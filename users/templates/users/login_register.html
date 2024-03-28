@@ -4,24 +4,61 @@
 
     {% if page == 'register' %}
 
-        <h1>Register User</h1>
-        <form method="POST" action="{% url 'register' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Register User" />
-        </form>
-        <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+        <div class="mt-8 mx-auto">
+            <div class="bg-white rounded-2xl p-8">
+                <div class="text-3xl mb-5 font-black">Register</div>
+                <form method="POST" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <div class="mb-2 font-medium">
+                                {{ field.label }}
+                            </div>
+                            {{ field }}
+
+                            <!-- {% if field.help_text %}
+                                <small>{{ field.help_text }}</small>
+                            {% endif %} -->
+
+                            <div class="text-sm" style="color: red;">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    {% endfor %}
+
+                    <div class="mb-3">
+                        <input class="bg-blue-500 text-sm text-white rounded-2xl p-2" type="submit" value="Register User" />
+                    </div>
+                </form>
+                <p class="text-sm font-light">Already have an account? <a class="font-medium" href="{% url 'login' %}">Log In</a></p>
+            </div>
+        </div>
 
     {% else %}
 
-        <form action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
-            <input type="text" name="username" placeholder="Username" />
-            <input type="password" name="password" placeholder="Enter Password" />
-            <input type="submit" value="Login" />
-
-            <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
-        </form>
+        <div class="grid place-content-center mt-8 max-w-sm mx-auto">
+            <div class="bg-white rounded-2xl p-8">
+                <div class="text-3xl mb-3 font-black">Login</div>
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input class="w-full bg-[#F5F5F5] p-3 rounded-2xl" type="text" name="username" placeholder="Username" />
+                    </div>
+                    <div class="mb-3">
+                        <input class="w-full bg-[#F5F5F5] p-3 rounded-2xl" type="password" name="password" placeholder="Enter Password" />
+                    </div>
+                    <div class="mb-3">
+                        <input class="w-full bg-blue-500 text-white rounded-2xl p-2" type="submit" value="Login" />
+                    </div>
+        
+                    <p class="text-sm font-light">Don't have an account? <a href="{% url 'register' %}" class="font-medium">Sign Up</a></p>
+                </form>
+            </div>
+        </div>
 
     {% endif %}
 

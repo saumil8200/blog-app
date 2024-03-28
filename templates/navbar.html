@@ -50,7 +50,11 @@
             </span>
             {% else %}
             <span class="group">
-                <a href="{% url 'login' %}">Login/Sign Up</a>
+                <a href="{% url 'login' %}">Login</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            <span class="group">
+                <a href="{% url 'register' %}">Sign Up</a>
                 <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
             </span>
             {% endif %}
