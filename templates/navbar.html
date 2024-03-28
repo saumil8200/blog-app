@@ -59,12 +59,36 @@
             </span>
             {% endif %}
         </div>
-        <div id="hamburger" class="fa fa-bars flex items-center text-xl" style="display:none;">-</div>
+        <div id="hamburger" class="fa fa-bars flex items-center text-xl" style="display:none;"></div>
         <div id="mobileNav"
-            class="fixed flex flex-col gap-8 pt-16 px-4 text-xl uppercase bg-teal-500 h-full inset-0 top-16 w-[70%] left-[-70%] ease-in-out duration-500 cursor-pointer">
-            <span>Services</span>
-            <span>About</span>
-            <span>Contact</span>
+            class="fixed flex flex-col gap-8 pt-16 px-4 text-sm uppercase bg-white h-full inset-0 top-16 w-[70%] left-[-70%] ease-in-out duration-500 cursor-pointer">
+            <span class="group">
+                <a href="{% url 'profiles' %}">Authors</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            <span class="group">
+                <a href="{% url 'categories' %}">Categories</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            {% if request.user.is_authenticated %}
+            <span class="group">
+                <a href="{% url 'create-blog' %}">Write</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            <span class="group">
+                <a href="{% url 'logout' %}">Logout</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            {% else %}
+            <span class="group">
+                <a href="{% url 'login' %}">Login</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            <span class="group">
+                <a href="{% url 'register' %}">Sign Up</a>
+                <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
+            </span>
+            {% endif %}
         </div>
     </div>
 </nav>
