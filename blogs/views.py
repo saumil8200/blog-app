@@ -40,12 +40,13 @@ def category(request, pk):
 
 @login_required(login_url="login")
 def createBlog(request):
+    profile = request.user.profile
     form = BlogForm()
 
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
-            profile = Profile.objects.get(user=request.user)
+            # profile = Profile.objects.get(user=request.user)
             blog = form.save(commit=False)
             blog.owner = profile
             blog.save()
@@ -58,10 +59,11 @@ def createBlog(request):
 
 @login_required(login_url="login")
 def updateBlog(request, pk):
-    blog = Blog.objects.get(id=pk)
+    profile = request.user.profile
+    blog = profile.blog_set.get(id=pk)
 
-    if request.user != blog.owner.user:
-        return redirect('permission_denied')
+    # if request.user != blog.owner.user:
+    #     return redirect('permission_denied')
 
     form = BlogForm(instance=blog)
 
@@ -79,7 +81,8 @@ def updateBlog(request, pk):
 
 @login_required(login_url="login")
 def deleteBlog(request, pk):
-    blog = Blog.objects.get(id=pk)
+    profile = request.user.profile
+    blog = profile.blog_set.get(id=pk)
 
     if request.user != blog.owner.user:
         return redirect('permission_denied')
