@@ -45,7 +45,7 @@
                 <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
             </span>
             <span class="group">
-                <a href="{% url 'account' %}">Account</a>
+                <a href="{% url 'account' %}">{{ request.user.username }}</a>
                 <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
             </span>
             <span class="group">
@@ -80,7 +80,7 @@
                 <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
             </span>
             <span class="group">
-                <a href="{% url 'account' %}">Account</a>
+                <a href="{% url 'account' %}">{{ request.user.username }}</a>
                 <!-- <div class="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div> -->
             </span>
             <span class="group">
