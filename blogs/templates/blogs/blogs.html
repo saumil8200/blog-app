@@ -5,7 +5,9 @@
 <div class="mt-5">
     <div>
         {% if user.is_authenticated %}
-            <h1 class=  "text-3xl mb-3 font-black">Welcome, {{ user.first_name }}</h1>
+            {% if page != 'category' %}
+                <h1 class=  "text-3xl mb-3 font-black">Welcome, {{ user.first_name }}</h1>
+            {% endif %}
         {% endif %}
         {% if page == 'category' %}
             <h1 class=  "text-3xl mb-3 font-black">{{ category.name }}</h1>
