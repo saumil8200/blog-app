@@ -29,15 +29,15 @@
                     </div>
                     <div class="px-2"> - </div>
                     <div class="font-light">
-                        {{ blog.created }}
+                        Posted {{ blog.created|timesince }} ago
                     </div>
                 </div>
                 <a href="{% url 'blog' blog.id %}">
                     <div class="flex items-center mb-3">
                         <div class="pr-2">
-                            <div class="font-black text-2xl mb-2">{{ blog.title }}</div>
+                            <div class="font-black text-2xl mb-2">{{ blog.title|title }}</div>
                             <div class="text-sm font-light">
-                                {{ blog.description|slice:"300"|safe }}...
+                                {{ blog.description|slice:"300"|linebreaks|urlize|safe }}...
                             </div>
                         </div>
                         <div class="pl-2">

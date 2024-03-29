@@ -17,7 +17,7 @@
         <img class="w-full h-auto" src="{{ blog.featured_image.url }}">
     </div> -->
     <div class="mt-5">
-        <div class="text-4xl mb-3 font-black">{{ blog.title }}</div>
+        <div class="text-4xl mb-3 font-black">{{ blog.title|title }}</div>
         <div class="flex items-center text-sm">
             <div class="pr-2">
                 <img class="object-cover rounded-full" style="width: 50px; height: 50px;" src="{{ blog.owner.profile_image.url }}"> 
@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="font-light">
-                    {{ blog.created }}
+                    Posted {{ blog.created|timesince }} ago
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
             </a>
         </div>
         <div class="mt-5 font-regular">
-            {{ blog.description|safe }}
+            {{ blog.description|linebreaks|urlize|safe }}
         </div>
     </div>
 </div>
