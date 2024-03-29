@@ -839,22 +839,6 @@ video {
   font-family: 'Inter';
 }
 
-.font-\[\'Poppins\'\] {
-  font-family: 'Poppins';
-}
-
-.font-\[\'Arvo\'\] {
-  font-family: 'Arvo';
-}
-
-.font-\[\'Montserrat\'\] {
-  font-family: 'Montserrat';
-}
-
-.font-\[\'Raleway\'\] {
-  font-family: 'Raleway';
-}
-
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
